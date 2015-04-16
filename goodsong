@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+WORKFILE=$HOME/.goodsongs
+LASTFILE=$WORKFILE.last
+SONGURL=$(sort -R $WORKFILE | head -n 1)
+LASTURL=$(cat $LASTFILE)
+
+if [ "$1" == "add" ]; then
+    if [ -n "$2" ] && ! [ -n "$(grep -w $2 $WORKFILE)" ]; then
+        echo "$2" >> $WORKFILE
+        echo "$2" > $LASTFILE
+        exit 0
+    else
+        echo "Put a URL that's not there, dummy!"
+        exit 1
+    fi
+elif [ "$1" == "undo" ]; then
+    grep -v "$LASTURL" $WORKFILE > $WORKFILE.temp && mv $WORKFILE.temp $WORKFILE
+    exit 0
+fi
+
+x-www-browser $SONGURL 2>> /dev/null
+echo "$SONGURL" > $LASTFILE
