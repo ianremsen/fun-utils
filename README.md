@@ -1,2 +1,2 @@
-# fun-utils
-nonserious little scripts, split from misc
+# utils
+serious nonserious little scripts, split from misc
