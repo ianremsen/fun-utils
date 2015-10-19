@@ -25,9 +25,9 @@ if [ -n $(command -v wget) ] && [ -x $( whereis wget | awk '{print $2;}' ) ] ||
     if ! [ -f ~/.bashspec ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec -O ~/.bashspec
     fi
-    if [ $REMOTE == 0 ] && [ -n $(command -v tmux) ]; then
+    if   [ $REMOTE == 0 ] && [ -n $(command -v tmux) ] && [ -x $( whereis tmux | awk '{print $2;}' ) ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.local -O ~/.tmux.conf
-    else
+    elif [ -n $(command -v tmux) ] && [ -x $( whereis tmux | awk '{print $2;}' ) ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.remote -O ~/.tmux.conf
     fi
 elif [ -n $(command -v curl) ] && [ -x $( whereis curl | awk '{print $2;}' ) ] ||
@@ -41,9 +41,9 @@ elif [ -n $(command -v curl) ] && [ -x $( whereis curl | awk '{print $2;}' ) ] |
     if ! [ -f ~/.bashspec ] && ! [ -d /usr/share/nano ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec > ~/.bashspec
     fi
-    if [ $REMOTE == 0 ] && [ -n $(command -v tmux) ]; then
+    if   [ $REMOTE == 0 ] && [ -n $(command -v tmux) ] && [ -x $( whereis tmux | awk '{print $2;}' ) ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.local > ~/.tmux.conf
-    else
+    elif [ -n $(command -v tmux) ] && [ -x $( whereis tmux | awk '{print $2;}' ) ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.remote > ~/.tmux.conf
     fi
 else
