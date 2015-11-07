@@ -14,8 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-if [ $1 == 'whole' ]; then
-	sudo tar -cvpzf $HOME/$(hostname)_$(date -I).tar.gz --exclude=$HOME/$(hostname)_$(date -I).tar.gz --one-file-system /
+if ! [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
+    SUDOEX=sudo
 else
-	tar -cvpzf $HOME/$(hostname)_home_$(date -I).tar.gz --exclude=$HOME/$(hostname)_home_$(date -I).tar.gz $HOME
+    EXCYG='--exclude=/cygdrive/*'
+fi
+
+if [ $1 == 'whole' ]; then
+    $SUDOEX tar -cvpzf $HOME/$(hostname)_$(date -I).tar.gz --exclude=$HOME/$(hostname)_$(date -I).tar.gz $EXCYG --one-file-system /
+else
+    tar -cvpzf $HOME/$(hostname)_home_$(date -I).tar.gz --exclude=$HOME/$(hostname)_home_$(date -I).tar.gz $HOME
 fi
