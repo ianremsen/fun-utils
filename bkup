@@ -16,7 +16,7 @@
 
 WHOLEX="--exclude=/tmp --exclude=/proc --exclude=$HOME/$(hostname)_$(date "+%Y-%m-%d").tar.gz --exclude=/var/log"
 HOMEX="--exclude=$HOME/$(hostname)_home_$(date "+%Y-%m-%d").tar.gz --exclude=$HOME/.bashrc --exclude=$HOME/.profile --exclude=$HOME/.bash_profile 
---exclude=$HOME/.aliases --exclude=$HOME/.screenrc --exclude=$HOME/.bashrc --exclude=$HOME/.nanorc --exclude=$HOME/updatedot 
+--exclude=$HOME/.aliases --exclude=$HOME/.screenrc --exclude=$HOME/.bashrc --exclude=$HOME/.nanorc --exclude=$HOME/bin 
 --exclude=$HOME/.cache/* --exclude=$HOME/.ssh/* --exclude=$HOME/.ssh --exclude=$HOME/.cache"
 
 if ! [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
