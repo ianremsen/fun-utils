@@ -26,7 +26,7 @@ if [ -n "$(command -v wget)" ] && [ -x "$( whereis wget | awk '{print $2;}' )" ]
     fi
 
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/updatedot -O ~/bin/updatedot
-    wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/updateutil -O ~/bin/updateutil
+    wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/updateutil -O ~/bin/updateutil.new
 elif [ -n "$(command -v curl)" ] && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
                                     [ -x "$( whereis curl | awk '{print $0;}' )" ]; then
     curl https://raw.githubusercontent.com/ianremsen/utils/master/bkup > ~/bin/bkup
@@ -35,7 +35,7 @@ elif [ -n "$(command -v curl)" ] && [ -x "$( whereis curl | awk '{print $2;}' )"
     fi
 
     curl https://raw.githubusercontent.com/ianremsen/utils/master/updatedot > ~/bin/updatedot
-    curl https://raw.githubusercontent.com/ianremsen/utils/master/updateutil > ~/bin/updateutil
+    curl https://raw.githubusercontent.com/ianremsen/utils/master/updateutil > ~/bin/updateutil.new
 else
     echo 'Neither wget nor curl are executable.'
     exit 1
@@ -44,3 +44,5 @@ fi
 for file in `ls $HOME/bin`; do
     chmod 744 $HOME/bin/$file
 done
+
+mv $HOME/bin/updateutil.new $HOME/bin/updateutil
