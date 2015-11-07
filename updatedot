@@ -20,7 +20,6 @@ if [ -n "$(command -v wget)" ] && [ -x "$( whereis wget | awk '{print $2;}' )" ]
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.aliases -O ~/.aliases
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.screenrc -O ~/.screenrc
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.nanorc -O ~/.nanorc
-    wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/updatedot -O ~/updatedot
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bash_profile -O ~/.bash_profile
     if ! [ -f ~/.bashspec ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec -O ~/.bashspec
@@ -39,7 +38,6 @@ elif [ -n "$(command -v curl)" ] && [ -x "$( whereis curl | awk '{print $2;}' )"
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.aliases > ~/.aliases
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.screenrc > ~/.screenrc
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.nanorc > ~/.nanorc
-    curl https://raw.githubusercontent.com/ianremsen/utils/master/updatedot > ~/updatedot
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bash_profile > ~/.bash_profile
     if ! [ -f ~/.bashspec ] && ! [ -d /usr/share/nano ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec > ~/.bashspec
@@ -58,11 +56,4 @@ else
 fi
 
 cp ~/.bash_profile ~/.profile
-
-chmod +x updatedot
-
-if [ "$REMOTE" == "0" ] && [ -n "$(command -v sudo)" ]; then
-    sudo mv ~/updatedot /usr/local/bin
-fi
-
 source ~/.bash_profile
