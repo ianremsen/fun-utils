@@ -28,8 +28,8 @@ else
     CYGX="--exclude=/cygdrive/* --exclude=$HOME/.cygwin"
 fi
 
-HOMEX="--exclude=$HOME/$(hostname)_home_$(date +%Y-%m-%d).tar.gz --exclude=$HOME/.bashrc --exclude=$HOME/.profile --exclude=$HOME/.bash_profile --exclude=$HOME/.aliases --exclude=$HOME/.screenrc --exclude=$HOME/.bashrc --exclude=$HOME/.nanorc --exclude=$HOME/bin/* --exclude=$HOME/.cache/* --exclude=$HOME/.ssh/* --exclude=$HOME/.cache/* $CYGX $STEAMX"
-WHOLEX="--exclude=/tmp/* --exclude=/proc/* --exclude=$HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz --exclude=/var/log/* $HOMEX"
+HOMEX="--exclude=$HOME/$(hostname)_home_$(date +%Y-%m-%d).tar.gz --exclude=$HOME/.bashrc --exclude=$HOME/.profile --exclude=$HOME/.bash_profile --exclude=$HOME/.aliases --exclude=$HOME/.screenrc --exclude=$HOME/.bashrc --exclude=$HOME/.nanorc --exclude=$HOME/.tmux.conf --exclude=$HOME/.bash_history --exclude=$HOME/bin/* --exclude=$HOME/bin/ --exclude=$HOME/.cache/* --exclude=$HOME/.cache/ --exclude=$HOME/.ssh/* --exclude=$HOME/.ssh/ $CYGX $STEAMX"
+WHOLEX="--exclude=/tmp/* --exclude=/proc/* --exclude=/tmp/ --exclude=/proc/ --exclude=$HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz --exclude=/var/log/* --exclude=/var/log/ $HOMEX"
 
 if [ "$1" == "whole" ]; then
     $SUDOEX tar -cvpzf $HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz $WHOLEX --one-file-system /
