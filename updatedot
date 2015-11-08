@@ -24,10 +24,8 @@ if hash wget 2>/dev/null && [ -x "$( whereis wget | awk '{print $2;}' )" ] ||
     if ! [ -f ~/.bashspec ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec -O ~/.bashspec
     fi
-    if   [ "$REMOTE" == "0" ]  && hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
-        wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.local -O ~/.tmux.conf
-    elif hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
-        wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.remote -O ~/.tmux.conf
+    if hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
+        wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf -O ~/.tmux.conf
     fi
     if   [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.cygwin -O ~/.cygwin
@@ -42,10 +40,8 @@ elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
     if ! [ -f ~/.bashspec ] && ! [ -d /usr/share/nano ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec > ~/.bashspec
     fi
-    if   [ "$REMOTE" == "0" ]  && hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
-        curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.local > ~/.tmux.conf
-    elif hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
-        curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf.remote > ~/.tmux.conf
+    if hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
+        curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf > ~/.tmux.conf
     fi
     if   [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.cygwin > ~/.cygwin
