@@ -14,17 +14,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-WHOLEX="--exclude=/tmp/* --exclude=/proc/* --exclude=$HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz --exclude=/var/log/*"
-HOMEX="--exclude=$HOME/$(hostname)_home_$(date +%Y-%m-%d).tar.gz --exclude=$HOME/.bashrc --exclude=$HOME/.profile --exclude=$HOME/.bash_profile --exclude=$HOME/.aliases --exclude=$HOME/.screenrc --exclude=$HOME/.bashrc --exclude=$HOME/.nanorc --exclude=$HOME/bin/* --exclude=$HOME/.cache/* --exclude=$HOME/.ssh/* --exclude=$HOME/.cache/*"
-
 if ! [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
     SUDOEX=sudo
+
+    if hash steam 2>/dev/null; then
+        STEAMEX="--exclude=$HOME/.steam/*"
+    fi
 else
     EXCYG="--exclude=/cygdrive/* --exclude=$HOME/.cygwin"
 fi
 
+WHOLEX="--exclude=/tmp/* --exclude=/proc/* --exclude=$HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz --exclude=/var/log/* $HOMEX"
+HOMEX="--exclude=$HOME/$(hostname)_home_$(date +%Y-%m-%d).tar.gz --exclude=$HOME/.bashrc --exclude=$HOME/.profile --exclude=$HOME/.bash_profile --exclude=$HOME/.aliases --exclude=$HOME/.screenrc --exclude=$HOME/.bashrc --exclude=$HOME/.nanorc --exclude=$HOME/bin/* --exclude=$HOME/.cache/* --exclude=$HOME/.ssh/* --exclude=$HOME/.cache/* $EXCYG $STEAMEX"
+
 if [ "$1" == "whole" ]; then
-    $SUDOEX tar -cvpzf $HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz $WHOLEX $HOMEX $EXCYG --one-file-system /
+    $SUDOEX tar -cvpzf $HOME/$(hostname)_$(date +%Y-%m-%d).tar.gz $WHOLEX --one-file-system /
 else
-    tar -cvpzf $HOME/$(hostname)_home_$(date +%Y-%m-%d).tar.gz $HOMEX $EXCYG $HOME
+    tar -cvpzf $HOME/$(hostname)_home_$(date +%Y-%m-%d).tar.gz $HOMEX $HOME
 fi
