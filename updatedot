@@ -27,7 +27,7 @@ if hash wget 2>/dev/null && [ -x "$( whereis wget | awk '{print $2;}' )" ] ||
     if hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf -O ~/.tmux.conf
     fi
-    if   [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
+    if [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.cygwin -O ~/.cygwin
     fi
 elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
@@ -43,11 +43,11 @@ elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
     if hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.tmux.conf > ~/.tmux.conf
     fi
-    if   [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
+    if [ $(uname -a | awk '{print $7;}') == "Cygwin" ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.cygwin > ~/.cygwin
     fi
 else
-    echo 'Neither wget nor curl are executable.'
+    echo "Neither wget nor curl are executable."
     exit 1
 fi
 
