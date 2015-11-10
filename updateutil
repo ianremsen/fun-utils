@@ -29,7 +29,7 @@ elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
     curl https://raw.githubusercontent.com/ianremsen/utils/master/updatedot > ~/bin/updatedot
     curl https://raw.githubusercontent.com/ianremsen/utils/master/updateutil > ~/bin/updateutil.new
 else
-    echo 'Neither wget nor curl are executable.'
+    echo "Neither wget nor curl are executable."
     exit 1
 fi
 
