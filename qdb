@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-WORKFILE=/etc/quotes
+WORKFILE="/etc/quotes"
 QUOTENUM="$(sort -R $WORKFILE | head -n 1)"
 
 if [ "$1" == "update" ]; then
@@ -23,4 +23,3 @@ if [ "$1" == "update" ]; then
 fi
 
 links -dump http://bash.org/?$QUOTENUM | sed -n '/^.*[X].*$/,/^.*Home.*Latest.*$/{/^.*[X].*$/d;/^.*Home.*Latest.*$/d;p}'
-
