@@ -38,12 +38,12 @@ PLAYER="audacious"
 
 while getopts "dEnt:a:u:" flag; do
     case ${flag} in
-        n) new=1 ;;
-        t) newtitle="${OPTARG}" ;;
-        a) newartist="${OPTARG}" ;;
-        u) newurl="${OPTARG}" ;;
-        E) edit=1 ;;
-        d) dl=1 ;;
+        n) new=1;;
+        t) newtitle="${OPTARG}";;
+        a) newartist="${OPTARG}";;
+        u) newurl="${OPTARG}";;
+        E) edit=1;;
+        d) dl=1;;
     esac
 done
 
