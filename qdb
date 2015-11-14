@@ -18,8 +18,8 @@ WORKFILE="/etc/quotes"
 QUOTENUM="$(sort -R $WORKFILE | head -n 1)"
 
 if [ "$1" == "update" ]; then
-    links -source http://bash.org/?random1 | grep 'Permanent link' | gawk -F ? '{print $2}' | gawk -F \" '{print $1}' >> $WORKFILE
+    links -source http://bash.org/?random1 | grep "Permanent link" | gawk -F ? "{print $2}" | gawk -F \" "{print $1}" >> $WORKFILE
     exit 0
 fi
 
-links -dump http://bash.org/?$QUOTENUM | sed -n '/^.*[X].*$/,/^.*Home.*Latest.*$/{/^.*[X].*$/d;/^.*Home.*Latest.*$/d;p}'
+links -dump http://bash.org/?$QUOTENUM | sed -n "/^.*[X].*$/,/^.*Home.*Latest.*$/{/^.*[X].*$/d;/^.*Home.*Latest.*$/d;p}"
