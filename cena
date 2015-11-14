@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# JOHN CENA!!! Requires mpg123, amixer, pulseaudio, and
+# Requires mpg123, amixer, pulseaudio, and
 # an mp3 of the John Cena entrance theme.
 
 # This program is free software: you can redistribute it and/or modify
