@@ -21,7 +21,7 @@ if hash wget 2>/dev/null && [ -x "$( whereis wget | awk '{print $2;}' )" ] ||
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.screenrc -O ~/.screenrc
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.nanorc -O ~/.nanorc
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bash_profile -O ~/.bash_profile
-    if ! [ -f ~/.bashspec ]; then
+    if ! [ -f "$HOME/.bashspec" ]; then
         wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec -O ~/.bashspec
     fi
     if hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
@@ -37,7 +37,7 @@ elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.screenrc > ~/.screenrc
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.nanorc > ~/.nanorc
     curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bash_profile > ~/.bash_profile
-    if ! [ -f ~/.bashspec ] && ! [ -d /usr/share/nano ]; then
+    if ! [ -f "$HOME/.bashspec" ]; then
         curl https://raw.githubusercontent.com/ianremsen/dotfiles/master/.bashspec > ~/.bashspec
     fi
     if hash tmux 2>/dev/null && [ -x "$( whereis tmux | awk '{print $2;}' )" ]; then
