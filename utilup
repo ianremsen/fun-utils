@@ -26,8 +26,8 @@ if hash wget 2>/dev/null && [ -x "$( whereis wget | awk '{print $2;}' )" ] ||
 elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
                               [ -x "$( whereis curl | awk '{print $0;}' )" ]; then
     curl https://raw.githubusercontent.com/ianremsen/utils/master/bkup > ~/bin/bkup
-    curl https://raw.githubusercontent.com/ianremsen/utils/master/updatedot > ~/bin/dotup
-    curl https://raw.githubusercontent.com/ianremsen/utils/master/updateutil > ~/bin/utilup.new
+    curl https://raw.githubusercontent.com/ianremsen/utils/master/dotup > ~/bin/dotup
+    curl https://raw.githubusercontent.com/ianremsen/utils/master/utilup > ~/bin/utilup.new
 else
     echo "Neither wget nor curl are executable."
     exit 1
