@@ -14,17 +14,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-if ! [ -d "$HOME/bin" ]; then
-    mkdir $HOME/bin
-fi
+if ! [ -d "$HOME/bin" ]; then mkdir $HOME/bin; fi
 
-if hash wget 2>/dev/null && [ -x "$( whereis wget | awk '{print $2;}' )" ] ||
-                            [ -x "$( whereis wget | awk '{print $0;}' )" ]; then
+if hash wget 2>/dev/null && [ -x "$( whereis wget | awk '{print $2;}' )" ] || [ -x "$( whereis wget | awk '{print $0;}' )" ]; then
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/bkup -O $HOME/bin/bkup
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/dotup -O $HOME/bin/dotup
     wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/utilup -O $HOME/bin/utilup.new
-elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] ||
-                              [ -x "$( whereis curl | awk '{print $0;}' )" ]; then
+elif hash curl 2>/dev/null && [ -x "$( whereis curl | awk '{print $2;}' )" ] || [ -x "$( whereis curl | awk '{print $0;}' )" ]; then
     curl https://raw.githubusercontent.com/ianremsen/utils/master/bkup > $HOME/bin/bkup
     curl https://raw.githubusercontent.com/ianremsen/utils/master/dotup > $HOME/bin/dotup
     curl https://raw.githubusercontent.com/ianremsen/utils/master/utilup > $HOME/bin/utilup.new
@@ -33,8 +29,6 @@ else
     exit 1
 fi
 
-for file in `ls $HOME/bin`; do
-    chmod 744 $HOME/bin/$file
-done
+for file in `ls $HOME/bin`; do chmod 744 $HOME/bin/$file; done
 
 mv $HOME/bin/utilup.new $HOME/bin/utilup
