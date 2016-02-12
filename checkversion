@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Used for keeping track of non-package-managed software
 
 echo "$(hostname)" > ~/.versions
