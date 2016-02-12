@@ -1,9 +1,11 @@
 #!/bin/bash
+# Used for keeping track of non-package-managed software
 
-echo "go: $(go version | cut -d " " -f 3)" > ~/.versions
+echo "$(hostname)" > ~/.versions
+echo "$(uname -a)" >> ~/.versions
+echo "go: $(go version | cut -d " " -f 3)" >> ~/.versions
 echo "dmd: $(dmd --version | grep "D Compiler" | cut -d " " -f 4)" >> ~/.versions
 echo "youtube-dl: $(youtube-dl --version)" >> ~/.versions
-echo "pip: $(pip -V | cut -d " " -f 2)" >> ~/.versions
 echo "Racket: $(racket -V | cut -d " " -f 4)" >> ~/.versions
 echo "Lua: $(lua -v | cut -d " " -f 2)" >> ~/.versions
 echo "nodeJS: $(node -v)" >> ~/.versions
