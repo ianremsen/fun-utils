@@ -16,10 +16,10 @@ while :; do
 	if [ "$line" == "p" ]; then
 		echo "go:" $(go version | cut -d " " -f 3)
 		echo "dmd:" $(dmd --version | grep "D Compiler" | cut -d " " -f 4)
-		echo "Racket:" $(racket -V | cut -d " " -f 4)
-		echo "Lua:" $(lua -v | cut -d " " -f 2)
+		echo "racket:" $(racket -V | cut -d " " -f 4)
+		echo "lua:" $(lua -v | cut -d " " -f 2)
 		echo "perl6:" $(perl6 -v | cut -d " " -f 2)
-		echo "nodeJS:" $(node -v)
+		echo "node:" $(node -v)
 		echo "npm:" $(npm -v)
 		echo "rust:" $(rustc -V | cut -d " " -f 2)
 		break
