@@ -1,14 +1,30 @@
 #!/usr/bin/env bash
 # Used for keeping track of non-package-managed software
+# TODO: auto-download?
 
-echo "$(hostname)" > ~/.versions
-echo "$(uname -a)" >> ~/.versions
-echo "go: $(go version | cut -d " " -f 3)" >> ~/.versions
-echo "dmd: $(dmd --version | grep "D Compiler" | cut -d " " -f 4)" >> ~/.versions
-echo "youtube-dl: $(youtube-dl --version)" >> ~/.versions
-echo "Racket: $(racket -V | cut -d " " -f 4)" >> ~/.versions
-echo "Lua: $(lua -v | cut -d " " -f 2)" >> ~/.versions
-echo "nodeJS: $(node -v)" >> ~/.versions
-echo "npm: $(npm -v)" >> ~/.versions
-echo "rust: $(rustc -V | cut -d " " -f 2)" >> ~/.versions
-cat  ~/.versions
+exec 2>/dev/null
+
+echo "$(hostname)"
+echo "$(uname -a)"
+
+while :; do
+	echo -en "Press (p) to check programming environments\n"
+	echo -en "Press (o) to check other\n"
+	echo ""
+	read -rsn1 line
+
+	if [ "$line" == "p" ]; then
+		echo "go:" $(go version | cut -d " " -f 3)
+		echo "dmd:" $(dmd --version | grep "D Compiler" | cut -d " " -f 4)
+		echo "Racket:" $(racket -V | cut -d " " -f 4)
+		echo "Lua:" $(lua -v | cut -d " " -f 2)
+		echo "perl6:" $(perl6 -v | cut -d " " -f 2)
+		echo "nodeJS:" $(node -v)
+		echo "npm:" $(npm -v)
+		echo "rust:" $(rustc -V | cut -d " " -f 2)
+		break
+	elif [ "$line" == "o" ]; then
+		echo "youtube-dl:" $(youtube-dl --version)
+		break
+	fi
+done
