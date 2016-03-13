@@ -29,6 +29,10 @@ else
     exit 1
 fi
 
+if [ -n "$(cat /etc/*-release 2>/dev/null | grep Arch)" ]; then
+    wget --no-check-certificate https://raw.githubusercontent.com/ianremsen/utils/master/pkg-sy -O $HOME/bin/pkg-sy
+fi
+
 for file in `ls $HOME/bin`; do chmod 744 $HOME/bin/$file; done
 
 mv $HOME/bin/utilup.new $HOME/bin/utilup
