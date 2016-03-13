@@ -7,8 +7,8 @@ while :; do
     read -rsn1 line1
 
     if [ "$line1" == "l" ]; then
-        pacman -Qqe | grep -vx "$(pacman -Qqm)" | tee ~/Packages
-        pacman -Qqm | tee ~/Packages.aur
+        pacman -Qqe | grep -vx "$(pacman -Qqm)" | tee $HOME/.config/Packages
+        pacman -Qqm | tee $HOME/.config/Packages.aur
         echo ""
 
         while :; do
@@ -21,7 +21,7 @@ while :; do
         read -rsn1 line2
 
         if [ "$line2" == "y" ]; then
-            scp $HOME/Pack* botb:
+            scp $HOME/.config/Pack* botb:
             if [ $? -ne 0 ]; then
                 echo "Didn't work!"
                 continue
@@ -36,7 +36,7 @@ while :; do
         done
     break
     elif [ "$line1" == "s" ]; then
-        scp botb:Pack* $HOME && sudo xargs -a $HOME/Packages pacman -S --noconfirm --needed
+        scp botb:Pack* $HOME && sudo xargs -a $HOME/.config/Packages pacman -S --noconfirm --needed
         break
     fi
 done
