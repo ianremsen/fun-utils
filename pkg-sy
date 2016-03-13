@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+while :; do
+    echo -e -en "Press (l) to create list\n"
+    echo -e -en "Press (s) to sync list\n"
+    echo -e ""
+    read -rsn1 line1
+
+    if [ "$line1" == "l" ]; then
+        pacman -Qqe | grep -vx "$(pacman -Qqm)" | tee ~/Packages
+        pacman -Qqm | tee ~/Packages.aur
+        echo ""
+
+        while :; do
+
+        echo -e -en "Press (y) to upload\n"
+        echo -e -en "Press (k) to ssh-add\n"
+        echo -e -en "Press (q) to quit\n"
+        echo -e ""
+
+        read -rsn1 line2
+
+        if [ "$line2" == "y" ]; then
+            scp $HOME/Pack* botb:
+            if [ $? -ne 0 ]; then
+                echo "Didn't work!"
+                continue
+            else break; fi
+        elif [ "$line2" == "k" ]; then
+            ssh-add
+            if [ $? -ne 0 ]; then
+                echo "Didn't work!"
+                continue
+            else continue; fi
+        elif [ "$line2" == "q" ]; then break; fi
+        done
+    break
+    elif [ "$line1" == "s" ]; then
+        scp botb:Pack* $HOME && sudo xargs -a $HOME/Packages pacman -S --noconfirm --needed
+    fi
+done
