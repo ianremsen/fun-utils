@@ -36,7 +36,7 @@ while :; do
         done
     break
     elif [ "$line1" == "s" ]; then
-        scp botb:Pack* $HOME && sudo xargs -a $HOME/.config/Packages pacman -S --noconfirm --needed
+        scp botb:Pack* $HOME/.config && sudo xargs -a $HOME/.config/Packages pacman -S --noconfirm --needed
         break
     fi
 done
