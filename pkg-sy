@@ -1,42 +1,43 @@
 #!/usr/bin/env bash
+# For Arch, syncs package lists
 
 while :; do
-    echo -e -en "Press (l) to create list\n"
-    echo -e -en "Press (s) to sync list\n"
+    echo -e -en "Press (1) to create/upload list\n"
+    echo -e -en "Press (2) to pull down/sync list\n"
     echo -e ""
     read -rsn1 line1
 
-    if [ "$line1" == "l" ]; then
+    if [ "$line1" == "1" ]; then
         pacman -Qqe | grep -vx "$(pacman -Qqm)" | tee $HOME/.config/Packages
-        pacman -Qqm | tee $HOME/.config/Packages.aur
+        pacman -Qqm | tee $HOME/.config/Packages.aur.$(hostname)
         echo ""
 
         while :; do
 
-        echo -e -en "Press (y) to upload\n"
-        echo -e -en "Press (k) to ssh-add\n"
-        echo -e -en "Press (q) to quit\n"
+        echo -e -en "Press (1) to upload\n"
+        echo -e -en "Press (2) to ssh-add\n"
+        echo -e -en "Press (3) to quit\n"
         echo -e ""
 
         read -rsn1 line2
 
-        if [ "$line2" == "y" ]; then
-            scp $HOME/.config/Pack* botb:
+        if [ "$line2" == "1" ]; then
+            scp $HOME/.config/Packages $HOME/.config/Packages.aur.$(hostname) botb:
             if [ $? -ne 0 ]; then
                 echo "Didn't work!"
                 continue
             else break; fi
-        elif [ "$line2" == "k" ]; then
+        elif [ "$line2" == "2" ]; then
             ssh-add
             if [ $? -ne 0 ]; then
                 echo "Didn't work!"
                 continue
             else continue; fi
-        elif [ "$line2" == "q" ]; then break; fi
+        elif [ "$line2" == "3" ]; then break; fi
         done
     break
-    elif [ "$line1" == "s" ]; then
-        scp botb:Pack* $HOME/.config && sudo xargs -a $HOME/.config/Packages pacman -S --noconfirm --needed
+    elif [ "$line1" == "2" ]; then
+        scp botb:Packages Packages.aur.* $HOME/.config && sudo xargs -a $HOME/.config/Packages pacman -S --noconfirm --needed
         break
     fi
 done
