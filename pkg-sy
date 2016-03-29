@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # For Arch, syncs package lists
 
+if   [ "$(hostname)" == "laptop" ];  then $OTHERHOST="desktop"
+elif [ "$(hostname)" == "desktop" ]; then $OTHERHOST="laptop"
+fi
+
 while :; do
     echo -e -en "Press (1) to create/upload list\n"
     echo -e -en "Press (2) to pull down/sync list\n"
@@ -37,7 +41,7 @@ while :; do
         done
     break
     elif [ "$line1" == "2" ]; then
-        scp botb:Packages.* botb:Packages.aur* $HOME/.config && sudo xargs -a $HOME/.config/Packages pacman -S --noconfirm --needed
+        scp botb:Packages.$OTHERHOST botb:Packages.aur.$OTHERHOST $HOME/.config && sudo xargs -a $HOME/.config/Packages.$OTHERHOST pacman -S --noconfirm --needed
         break
     fi
 done
