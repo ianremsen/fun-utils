@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # For Arch, syncs package lists
 
-if   [ "$(hostname)" == "laptop" ];  then $OTHERHOST="desktop"
-elif [ "$(hostname)" == "desktop" ]; then $OTHERHOST="laptop"
+if   [ "$(hostname)" == "laptop" ];  then OTHERHOST="desktop"
+elif [ "$(hostname)" == "desktop" ]; then OTHERHOST="laptop"
 fi
 
 while :; do
