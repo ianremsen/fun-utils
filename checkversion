@@ -14,25 +14,25 @@ while :; do
     read -rsn1 line
 
     if [ "$line" == "p" ]; then
-        echo -e "bash:\t\t" $(bash --version | grep "GNU bash" | cut -d " " -f 4)
-        echo -e "go:\t\t" $(go version | cut -d " " -f 3 | sed -r 's/^.{2}//')
-        echo -e "gcc:\t\t" $(gcc -dumpversion)
-        echo -e "g++:\t\t" $(g++ -dumpversion)
-        echo -e "git:\t\t" $(git --version | cut -d " " -f 3)
-        echo -e "make:\t\t" $(make --version | grep "GNU Make" | cut -d " " -f 3)
-        echo -e "python2:\t" $(python -V 2>&1 | cut -d " " -f 2)
-        echo -e "python3:\t" $(python3 -V | cut -d " " -f 2)
-        echo -e "dmd:\t\t" $(dmd --version | grep "D Compiler" | cut -d " " -f 4 | sed -r 's/^.{1}//')
-        echo -e "racket:\t\t" $(racket -V | cut -d " " -f 4 | sed -r 's/^.{1}//' | sed -r 's/.{1}$//')
-        echo -e "lua:\t\t" $(lua -v | cut -d " " -f 2)
-        echo -e "perl6:\t\t" $(perl6 -v | cut -d " " -f 2)
-        echo -e "node:\t\t" $(node -v | sed -r 's/^.{1}//')
-        echo -e "npm:\t\t" $(npm -v)
-        echo -e "rust:\t\t" $(rustc -V | cut -d " " -f 2)
+        echo -e "bash:\t\t"   $(bash --version | grep "GNU bash" | cut -d " " -f 4)
+        echo -e "go:\t\t"     $(go version     | cut -d " " -f 3 | sed -r 's/^.{2}//')
+        echo -e "gcc:\t\t"    $(gcc -dumpversion)
+        echo -e "g++:\t\t"    $(g++ -dumpversion)
+        echo -e "git:\t\t"    $(git --version  | cut -d " " -f 3)
+        echo -e "make:\t\t"   $(make --version | grep "GNU Make" | cut -d " " -f 3)
+        echo -e "python2:\t"  $(python -V 2>&1 | cut -d " " -f 2)
+        echo -e "python3:\t"  $(python3 -V     | cut -d " " -f 2)
+        echo -e "dmd:\t\t"    $(dmd --version  | grep "D Compiler" | cut -d " " -f 4    | sed -r 's/^.{1}//')
+        echo -e "racket:\t\t" $(racket -V  | cut -d " " -f 4       | sed -r 's/^.{1}//' | sed -r 's/.{1}$//')
+        echo -e "lua:\t\t"    $(lua -v     | cut -d " " -f 2)
+        echo -e "perl6:\t\t"  $(perl6 -v   | cut -d " " -f 5)
+        echo -e "node:\t\t"   $(node -v    | sed -r 's/^.{1}//')
+        echo -e "npm:\t\t"    $(npm -v)
+        echo -e "rust:\t\t"   $(rustc -V   | cut -d " " -f 2)
         break
     elif [ "$line" == "o" ]; then
         echo -e "youtube-dl:\t" $(youtube-dl --version)
-        echo -e "htop:\t\t" $(htop -v | grep "htop" | cut -d " " -f 2)
+        echo -e "htop:\t\t"     $(htop -v | grep "htop" | cut -d " " -f 2)
         break
     fi
 done
